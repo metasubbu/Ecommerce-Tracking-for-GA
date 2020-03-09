@@ -1,0 +1,21 @@
+<script>
+
+(function () {
+  
+  var storedID = {{TM_transId}}, newID = {{transactionId}};
+ 
+ // if storedID and newID don't match and if we have a newID, then "Track Transaction", also ignore...
+  var trackingStatus = ( storedID !== newID && newID !== undefined ) ? "Track Transaction" : "Already Tracked";
+  
+  dataLayer.push({
+    "event" : trackingStatus   
+  });
+  
+  if (trackingStatus === "Track Transaction" ) { // set transactionId to sessionCookie if you're going to track
+    document.cookie= "_TM_transId=" + newID +";path=/"+ ";domain=" + {{Page Hostname}}; 	 
+  }
+ 
+
+} )();
+
+</script>
