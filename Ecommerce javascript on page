@@ -1,0 +1,14 @@
+<script>
+/* to be implemented on page in position after the GTM snippet. Everything between {{ }} is a placeholder that should be populated by backend. */
+dataLayer.push ({
+                     'transactionId': {{orderID}}, // order's unique ID, string
+                     'transactionTotal': {{price}}, // amount collected during order process, number
+                     'transactionProducts': [{
+                          'sku': {{sku}}, // name of product or offer, string
+                          'name': {{name}}, // name of product or offer, string
+                          'category': {{category}}, // name of product or offer, but should be changed to indicated type of product ordered... either transactional or bundle
+                          'price': {{price}}, // amount collected during order process
+                         'quantity': 1 // set to 1, assuming only one thing can be ordered per order.
+                         }]
+                   });
+</script>
