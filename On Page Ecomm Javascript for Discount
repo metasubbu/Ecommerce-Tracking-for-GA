@@ -1,0 +1,20 @@
+<script>
+	window.dataLayer = window.dataLayer || []
+/* Everything between {{ }} is a placeholder that should be populated by back-end. */
+dataLayer.push({
+                     'transactionId': {{orderID}}, // Atlas’s Order Item ID (using Order Item ID because it is a unique ID common between free and paid) , string
+                     'transactionTotal': {{price}}, // Atlas Transaction Total Price from Payment Processor, number
+                     'transactionProducts': [
+					 {'sku': {{sku}}, // Atlas Offer ID, string
+                      'name': {{name}}, // Atlas Offer Description, string
+                      'category': {{category}}, //  Consumer’s previous Atlas Offer ID, if no previous pass “N/A”  
+                      'price': {{price}}, // Atlas Transaction Total Price from Payment Processor, number 
+                      'quantity': 1 // set to 1, assuming only one thing can be ordered per order.
+					 },
+					 {'sku': {{DiscountSKU}},// DiscoutnSKU can be a descriptive name like .... HDFC Bank Discount or similar to our current orderIDs, string
+                      'name': {{orderID}}+" "+{{DiscountSKU}}+" "+{{DiscountSKUDescription}},//Atlas's Offer ID plus the above string plus optional Discount Description, string
+                      'category': 'Promotion Discount',//Create optional discount categories as needed like Partner Discount, Referral Discount, Promotional Discount etc
+                      'price': -20,//should be negative
+                      'quantity': 1}]
+                   });
+</script>
